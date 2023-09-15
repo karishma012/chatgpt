@@ -5,6 +5,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import TypingAnimation from '@/components/TypingAnimation';
 
+
+
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
   const [chatLog, setChatLog] = useState([]);
@@ -22,7 +24,7 @@ export default function Home() {
     const url = "https://api.openai.com/v1/chat/completions";
     const headers = {
       'Content-type': 'application/json',
-      'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+      'Authorization': `Bearer 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`
     };
 
     const data = {
@@ -47,9 +49,10 @@ export default function Home() {
 
   return (
     <>
+    <div className='bg-gradient-to-r from-blue-200 to-purple-400'>
       <div className="container mx-auto max-w-[700px]">
         <div className="flex flex-col h-screen bg-gray-900">
-          <h1 className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center py-3 font-bold text-6xl">ChatGPT</h1>
+          <h1 className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center py-3 font-bold text-6xl">Startup Hire</h1>
           <div className="flex-grow p-6">
             <div className="flex flex-col space-y-4">
               {
@@ -81,6 +84,8 @@ export default function Home() {
           </form>
         </div>
       </div>
+      </div>
+
     </>
   )
 }
