@@ -24,7 +24,7 @@ export default function Home() {
     const url = "https://api.openai.com/v1/chat/completions";
     const headers = {
       'Content-type': 'application/json',
-      'Authorization': `Bearer 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`
+      'Authorization': `Bearer ${{OPEN_AI}}`
     };
 
     const data = {
