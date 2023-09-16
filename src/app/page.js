@@ -12,14 +12,17 @@ export default function Home() {
   const [chatLog, setChatLog] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+
+//handles user input, updates the chat log, and sends the user's message to the chatbot using sendMessage. 
+const handleSubmit = (event) => {
+    event.preventDefault();  //prevents reloading of page
 
     setChatLog((prevChatLog) => [...prevChatLog, { type: 'user', message: inputValue }])
     sendMessage(inputValue);
     setInputValue('');
   }
 
+  // This function prepares the data and makes the API request to interact with the chatbot.
   const sendMessage = (message) => {
     const url = "https://api.openai.com/v1/chat/completions";
     const headers = {
@@ -33,7 +36,7 @@ export default function Home() {
     };
 
     setIsLoading(true);
-
+    
     axios.post(url, data, { headers: headers }).then((response) => {
       console.log(response);
       setChatLog((prevChatLog) => [...prevChatLog, { type: 'bot', message: response.data.choices[0].message.content }])
@@ -42,9 +45,9 @@ export default function Home() {
       setIsLoading(false);
       console.log(error);
     })
-
-
-    // Add the code here to send the message
+    // this  is responsible for sending a POST request to a server, processing the server's response, updating the chat log with the bot's response, and handling any errors that might occur during the request
+    //headers for authorization
+    
   }
 
   return (
@@ -56,6 +59,8 @@ export default function Home() {
           <div className="flex-grow p-6">
             <div className="flex flex-col space-y-4">
               {
+                //map function that iterates over the chatLog array, which contains messages. 
+                // It generates HTML elements for each message.
                 chatLog.map((message, index) => (
                   <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'
                     }`}>
